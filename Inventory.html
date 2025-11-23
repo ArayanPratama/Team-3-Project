@@ -307,39 +307,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/datatables-simple-demo.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Panggil API dari Backend
-        fetch("http://localhost:3000/api/inventory")
-          .then((response) => response.json())
-          .then((data) => {
-            const tableBody = document.querySelector("#datatablesSimple tbody");
-
-            // Loop data dari database dan masukkan ke tabel HTML
-            data.forEach((item) => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                        <td>${item.product_name}</td>
-                        <td>${item.category}</td>
-                        <td>${item.location || "-"}</td>
-                        <td>${item.stock_quantity}</td>
-                        <td>${new Date(
-                          item.entry_date
-                        ).toLocaleDateString()}</td>
-                        <td>Rp ${item.price}</td>
-                    `;
-              tableBody.appendChild(row);
-            });
-
-            // Inisialisasi Simple-DataTables setelah data masuk
-            const datatablesSimple =
-              document.getElementById("datatablesSimple");
-            if (datatablesSimple) {
-              new simpleDatatables.DataTable(datatablesSimple);
-            }
-          })
-          .catch((error) => console.error("Error fetching data:", error));
-      });
-    </script>
   </body>
 </html>
