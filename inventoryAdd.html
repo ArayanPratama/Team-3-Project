@@ -324,39 +324,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="js/scripts.js"></script>
-    <script>
-      document
-        .getElementById("addInventoryForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault(); // Mencegah halaman reload
-
-          // Ambil data dari input
-          const formData = {
-            itemName: document.getElementById("itemName").value,
-            itemCategory: document.getElementById("itemCategory").value,
-            itemQuantity: document.getElementById("itemQuantity").value,
-            itemPrice: document.getElementById("itemPrice").value,
-            itemDescription: document.getElementById("itemDescription").value,
-          };
-
-          // Kirim data ke Backend
-          fetch("http://localhost:3000/api/inventory", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              alert("Data berhasil disimpan!");
-              window.location.href = "Inventory.html"; // Kembali ke list inventory
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("Gagal menyimpan data.");
-            });
-        });
-    </script>
   </body>
 </html>
